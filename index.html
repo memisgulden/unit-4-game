@@ -48,8 +48,8 @@
                 <div>Your Random Number: <div id="number"></div></div>
             </div>
             <div class="col-6 bg-success">
-                <div>Wins: </div>
-                <div>Loses: </div>
+                <div id="wins">Wins: </div>
+                <div id="loses">Loses: </div>
             </div>
         </div>
 
@@ -87,12 +87,12 @@
 
             var wins = 0;
             var loses = 0;
-            var score = "";
-            var randomNumber = [Math.floor(Math.random() * 120) + 19];
-            var crystal1 = [Math.floor(Math.random() * 12)];
-            var crystal2 = [Math.floor(Math.random() * 12)];
-            var crystal3 = [Math.floor(Math.random() * 12)];
-            var crystal4 = [Math.floor(Math.random() * 12)];
+            var score = 0;
+            var randomNumber = Math.floor(Math.random() * 120) + 19;
+            var crystal1 = Math.floor(Math.random() * 12);
+            var crystal2 = Math.floor(Math.random() * 12);
+            var crystal3 = Math.floor(Math.random() * 12);
+            var crystal4 = Math.floor(Math.random() * 12);
 
 
             $("#number").html(randomNumber);
@@ -100,23 +100,32 @@
             $("#crystal1").on("click",function() {
                 console.log("button 1 works");
                 console.log(crystal1);
-                crystal1 = parseInt(crystal1);
-                $("#score").text(crystal1);
+                score += crystal1;
+                $("#score").text(score);
+                if (score === randomNumber) {
+                    wins++;
+                    $("wins").text(wins++);
+                    console.log(wins);
+                }
+                else if (score > randomNumber) {
+                    loses++;
+                }
+                
             });
 
              $("#crystal2").on("click",function() {
                 console.log("button 2 works");
                 console.log(crystal2);
-                crystal2 = parseInt(crystal2);
-                $("#score").append(crystal2);
+                score += crystal2;
+                $("#score").text(score);
 
             });
 
              $("#crystal3").on("click",function() {
                 console.log("button 3 works");
                 console.log(crystal3);
-                crystal3 = parseInt(crystal3);
-                $("#score").append(crystal3);
+                score += crystal3;
+                $("#score").text(score);
 
             });
 
@@ -124,8 +133,8 @@
              $("#crystal4").on("click",function() {
                 console.log("button 4 works");
                 console.log(crystal4);
-                crystal4 = parseInt(crystal4);
-                $("#score").append(crystal4);
+                score += crystal4;
+                $("#score").text(score);
 
             });
 
